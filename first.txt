@@ -1,0 +1,140 @@
+cse@cse-OptiPlex-380:~$ sudo mysql;
+[sudo] password for cse: 
+Sorry, try again.
+[sudo] password for cse: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Bank               |
+| Gyan               |
+| Hospital           |
+| SKN                |
+| TYCSE              |
+| World              |
+| college            |
+| company            |
+| information_schema |
+| ishika             |
+| mysql              |
+| performance_schema |
+| prafful            |
+| skncse             |
+| student            |
+| sys                |
++--------------------+
+16 rows in set (0.68 sec)
+
+mysql> use sys;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table employee(emp_id int, emp_name vachar(50), emp_dept varchar(20), emp_sal int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(50), emp_dept varchar(20), emp_sal int)' at line 1
+mysql> create table employee(emp_id int, emp_name varchar(50), emp_dept varchar(20), emp_sal int);
+Query OK, 0 rows affected (1.78 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| emp_name | varchar(50) | YES  |     | NULL    |       |
+| emp_dept | varchar(20) | YES  |     | NULL    |       |
+| emp_sal  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.04 sec)
+
+mysql> insert into employee values(1,'Ishika Kokane','cse',75300);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from employee;
++--------+---------------+----------+---------+
+| emp_id | emp_name      | emp_dept | emp_sal |
++--------+---------------+----------+---------+
+|      1 | Ishika Kokane | cse      |   75300 |
++--------+---------------+----------+---------+
+1 row in set (0.00 sec)
+
+mysql> delete from employee where emp_id=1;
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from employee;
+Empty set (0.00 sec)
+
+mysql> insert into employee values('1001','Mahesh','cse',80000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into employee values('1002','Mubin','entc',85500);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into employee values('1003','Kapil','mech',75000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into employee values('1004','Rakesh','civil',79000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values('1005','Rekha','elec',55000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values('1006','Jaya','civil',6000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values('1007','Madhuri','cse',75000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into employee values('1008','Sonali','entc',40000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values('1009','Hema','entc',95000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values('1010','Amir','mech',94000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values('1011','sachine','civil',90000);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into employee values('1012','Ravi','elec',60000);
+Query OK, 1 row affected (0.26 sec)
+
+mysql> select * from employee;
++--------+----------+----------+---------+
+| emp_id | emp_name | emp_dept | emp_sal |
++--------+----------+----------+---------+
+|   1001 | Mahesh   | cse      |   80000 |
+|   1002 | Mubin    | entc     |   85500 |
+|   1003 | Kapil    | mech     |   75000 |
+|   1004 | Rakesh   | civil    |   79000 |
+|   1005 | Rekha    | elec     |   55000 |
+|   1006 | Jaya     | civil    |    6000 |
+|   1007 | Madhuri  | cse      |   75000 |
+|   1008 | Sonali   | entc     |   40000 |
+|   1009 | Hema     | entc     |   95000 |
+|   1010 | Amir     | mech     |   94000 |
+|   1011 | sachine  | civil    |   90000 |
+|   1012 | Ravi     | elec     |   60000 |
++--------+----------+----------+---------+
+12 rows in set (0.00 sec)
+
+mysql> select sum(emp_sal) from employee;
++--------------+
+| sum(emp_sal) |
++--------------+
+|       834500 |
++--------------+
+1 row in set (0.02 sec)
+
