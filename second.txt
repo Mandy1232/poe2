@@ -1,0 +1,86 @@
+
+ 
+// Importing database
+import java.sql.*;
+// Importing required classes
+import java.util.*;
+ 
+// Main class
+class SampleJDBC {
+ 
+    // Main driver method
+    public static void main(String a[])
+    {
+ 
+        
+        String url = "jdbc:mysql://localhost/skn";
+ 
+        
+        String user = "root";
+        String pass = "Root@123";
+ 
+        // Entering the data
+        Scanner k = new Scanner(System.in);
+ 
+        System.out.println("enter roll no");
+        int roll = k.nextInt();
+         
+        System.out.println("enter name");
+        String name = k.next();
+ 
+       
+     
+ 
+        // Inserting data using SQL query
+        String sql = "insert into student values(" + roll + ",'" + name + "')";
+ 
+        // Connection class object
+        Connection con = null;
+ 
+        // Try block to check for exceptions
+        try {
+ 
+        	//Class.forName("com.mysql.jdbc.Driver");
+        		
+        	Class.forName("com.mysql.cj.jdbc.Driver");
+        	
+            con = DriverManager.getConnection(url, user,
+                                              pass);
+ 
+            // Creating a statement
+            Statement st = con.createStatement();
+ 
+            /* Executing query
+            int m = st.executeUpdate(sql);
+            if (m == 1)
+                System.out.println(
+                    "inserted successfully : " + sql);
+            else
+                System.out.println("insertion failed");
+ 
+            // Closing the connections
+             */ 
+             
+            String sql1="select * from student";
+            ResultSet rs = st.executeQuery(sql1);
+            
+            while(rs.next())
+            {
+            	int roll1=rs.getInt(1);
+            	String name1 = rs.getString(2);
+            	
+            	System.out.println(roll1+"   "+name1);
+            	
+            }
+            
+            
+            con.close();
+        }
+ 
+        // Catch block to handle exceptions
+        catch (Exception ex) {
+            // Display message when exceptions occurs
+            System.err.println(ex);
+        }
+    }
+}
